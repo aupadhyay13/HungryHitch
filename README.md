@@ -1,2 +1,2 @@
-# Capstone-project
-For an online Food order web application 
+# Hungry Hitch
+An online Food order web application 
