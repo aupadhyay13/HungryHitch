@@ -1,0 +1,19 @@
+import jwt from 'jsonwebtoken';
+export class Utils{
+    public jwt = async (user : any) => {
+        console.log("user isssss-------->",user);
+        const token = jwt.sign({
+          id: user._id, email:user.email, isAdmin: user.isAdmin
+        },'dd56gfg8uh23gdkc09afshdvcfsda5',{
+          expiresIn:"30d"
+        });
+      
+        return {
+          email: user.email,
+          name: user.name,
+          address: user.address,
+          isAdmin: user.isAdmin,
+          token: token
+        };
+      }
+}
