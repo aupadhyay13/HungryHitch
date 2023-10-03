@@ -1,28 +1,50 @@
-.container{
+/* Base styles for all screen sizes */
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
     margin-top: 3rem;
+}
+
+.details {
+    width: 28rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.error-list {
+    color: red;
+}
+
+.register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Tablet (landscape) and larger screens */
+@media (min-width: 768px) {
+    .container {
+        margin-top: 0;
     }
-    
-    .details{
-      width: 28rem;
+
+    .details {
+        width: 50%;
     }
-    
-    form{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+}
+
+/* Mobile (portrait) screens */
+@media (max-width: 767px) {
+    .container {
+        margin-top: 0;
     }
-    
-    .error-list{
-      color: red;
+
+    .details {
+        width: 80%;
     }
-    
-    .register{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    
+}
