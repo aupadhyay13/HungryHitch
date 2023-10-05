@@ -1,4 +1,5 @@
 import { Utils } from "../../../helpers/utils";
+import { Food, FoodModel } from "../../../models/food.model";
 import { User, UserModel } from "../../../models/user.model";
 import bcrypt from 'bcryptjs';
 export class AdminUtil{
@@ -38,6 +39,36 @@ export class AdminUtil{
              }
         }catch(err){
             console.log("Error in Login API isss--->",err);
+            throw err;
+        }
+    }
+
+    public async addFoodItem(foodObj){
+        try{
+            const {name,cookTime,price} = foodObj;
+
+            const foodItem: Food = {
+                name,
+                cookTime,
+                price: +price
+              }
+          
+              const fItem = await FoodModel.create(foodItem);
+              return fItem;
+        }catch(err){
+            console.log("Error in creating food item isss--->",err);
+            throw err;
+        }
+    }
+
+
+    public async getFoodItems(){
+        try{
+          
+              const data = await FoodModel.find({});
+              return data;
+        }catch(err){
+            console.log("Error in creating food item isss--->",err);
             throw err;
         }
     }

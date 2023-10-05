@@ -62,12 +62,35 @@ export class AdminController{
 
     public addProduct =  async (req: Request, res : Response) => {
         try{
-            
+           
+            const result = await this.adminUtil.addFoodItem(req.body);
+            res.status(200).send({
+                status: Constants.SUCCEESS,
+                message: "Food Item Created Successfully!"
+            })
         }catch(error){
             console.log("Error in adding product---->",error);
             res.status(400).send({
                 status : Constants.FAIL,
                 message: "There is an error while adding product.Please try again later."
+            })
+        }
+        
+    }
+
+    public getProducts =  async (req: Request, res : Response) => {
+        try{
+           
+            const result = await this.adminUtil.getFoodItems();
+            res.status(200).send({
+                status: Constants.SUCCEESS,
+                data: result
+            })
+        }catch(error){
+            console.log("Error in getting products---->",error);
+            res.status(400).send({
+                status : Constants.FAIL,
+                message: "There is an error while fetching products.Please try again later."
             })
         }
         

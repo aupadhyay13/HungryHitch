@@ -16,4 +16,16 @@ export class Utils{
           token: token
         };
       }
+
+      public decodeAuthToken(token: string) {
+        if (token) {
+          try {
+            return jwt.verify(token, 'dd56gfg8uh23gdkc09afshdvcfsda5');
+          } catch (error) {
+            return false;
+          }
+        }
+        return false;
+      }
+
 }

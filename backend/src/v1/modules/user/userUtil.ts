@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import { User, UserModel } from '../../../models/user.model';
 import { Utils } from '../../../helpers/utils';
+import { FoodModel } from '../../../models/food.model';
 export class UserUtil{
     private utils: Utils = new Utils();
     public async signUpUser(userObj){
@@ -39,6 +40,17 @@ export class UserUtil{
              }
         }catch(err){
             console.log("Error in Login API isss--->",err);
+            throw err;
+        }
+    }
+
+    public async getFoodItems(){
+        try{
+          
+              const data = await FoodModel.find({});
+              return data;
+        }catch(err){
+            console.log("Error in creating food item isss--->",err);
             throw err;
         }
     }

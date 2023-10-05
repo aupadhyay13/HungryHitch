@@ -58,4 +58,22 @@ export class UserController{
         }
         
     }
+
+    public getProducts =  async (req: Request, res : Response) => {
+        try{
+           
+            const result = await this.userUtil.getFoodItems();
+            res.status(200).send({
+                status: Constants.SUCCEESS,
+                data: result
+            })
+        }catch(error){
+            console.log("Error in getting products---->",error);
+            res.status(400).send({
+                status : Constants.FAIL,
+                message: "There is an error while fetching products.Please try again later."
+            })
+        }
+        
+    }
 }
