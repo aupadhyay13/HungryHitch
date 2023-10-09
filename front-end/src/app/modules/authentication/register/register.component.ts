@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {TextInputComponent} from '../../../components/text-input/text-input.component';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -15,10 +16,9 @@ export class RegisterComponent implements OnInit{
   isSubmitted = false;
 
   returnUrl = '';
-  userService: any;
   constructor(
     private formBuilder: FormBuilder,
-    // private userService: UserService,
+    private userService: UserService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) { }
@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit{
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5)]],
       confirmPassword: ['', Validators.required],
-      address: ['', [Validators.required, Validators.minLength(10)]]
+      address: ['', [Validators.required, Validators.minLength(5)]]
     },{
       // validators: PasswordsMatchValidator('password','confirmPassword')
     });
@@ -46,17 +46,19 @@ export class RegisterComponent implements OnInit{
     if(this.registerForm.invalid) return;
 
     const fv= this.registerForm.value;
-    // const user :IUserRegister = {
-    //   name: fv.name,
-    //   email: fv.email,
-    //   password: fv.password,
-    //   confirmPassword: fv.confirmPassword,
-    //   address: fv.address
-    // };
-
-    // this.userService.register(user).subscribe(_ => {
-    //   this.router.navigateByUrl(this.returnUrl);
-    // })
+    const user :any = {
+      name: fv.name,
+      email: fv.email,
+      password: fv.password,
+      confirmPassword: fv.confirmPassword,
+      address: fv.address
+    };
+    console.log("user is--->",user);
+    this.userService.register(user).subscribe((user : any) => {
+        console.log("user is---->",user);
+      // this.router.navigateByUrl(this.returnUrl);
+      this.router.navigate(['/home'])
+    })
   }
 }
 

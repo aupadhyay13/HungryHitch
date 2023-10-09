@@ -11,6 +11,8 @@ import { InputValidationComponent } from 'src/app/components/input-validation/in
 import { TitleComponent } from 'src/app/components/title/title.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
+import { ToastrModule } from 'ngx-toastr';
 
 
 

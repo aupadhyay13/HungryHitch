@@ -1,25 +1,25 @@
 
 <header>
     <div class="container">
-      <a routerLink="/" class="logo">Hungry Hitch!</a>
+      <a routerLink="/home" class="logo">Hungry Hitch!</a>
       <nav>
         <ul>
-          <li>
-            <a routerLink="/login">Login</a>
+          <li *ngIf="!isLoggedIn">
+            <a routerLink="/authentication">Login</a>
           </li>
-          <li class="menu-container">
-            <a routerLink="/dashboard">Jimit</a>
+          <li *ngIf="isLoggedIn" class="menu-container">
+            <a routerLink="/home">{{userData.name}}</a>
             <div class="menu">
               <a routerLink="/profile">Profile</a>
               <a routerLink="/orders">Orders</a>
-              <a >Logout</a>
+              <a role="button" (click)="logout()">Logout</a>
             </div>
           </li>
-          <li>
+          <!-- <li>
             <a routerLink="/cart-page">
               Cart <span>5</span>
             </a>
-          </li>
+          </li> -->
         </ul>
       </nav>
     </div>

@@ -12,7 +12,6 @@ export class Utils{
           email: user.email,
           name: user.name,
           address: user.address,
-          isAdmin: user.isAdmin,
           token: token
         };
       }

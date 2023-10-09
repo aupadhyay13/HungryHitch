@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {DefaultButtonComponent} from '../../../components/default-button/default-button.component';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit  {
   isSubmitted = false;
   returnUrl = '';
   constructor(private formBuilder: FormBuilder,
-    // , private userService:UserService,
+     private userService:UserService,
      private activatedRoute:ActivatedRoute,
      private router:Router) { }
 
@@ -33,10 +34,12 @@ export class LoginComponent implements OnInit  {
     this.isSubmitted = true;
     if(this.loginForm.invalid) return;
 
-    // this.userService.login({email:this.fc.email.value,
-    //    password: this.fc.password.value}).subscribe(() => {
-    //      this.router.navigateByUrl(this.returnUrl);
-    //    });
+    this.userService.login({email:this.fc["email"].value,
+       password: this.fc['password'].value}).subscribe((data) => {
+        //  this.router.navigateByUrl(this.returnUrl);
+        console.log("data is---->",data);
+        this.router.navigate(['/home'])
+       });
   }
 
 }
