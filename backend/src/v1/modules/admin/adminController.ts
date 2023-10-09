@@ -37,6 +37,7 @@ export class AdminController{
     public login =  async (req: Request, res : Response) => {
         try{
             const result = await this.adminUtil.login(req.body);
+            console.log("result is----->",result);
             if(result){
                 res.status(200).send({
                     status: Constants.SUCCEESS,
