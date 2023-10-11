@@ -35,10 +35,15 @@ export class LoginComponent implements OnInit  {
     if(this.loginForm.invalid) return;
 
     this.userService.login({email:this.fc["email"].value,
-       password: this.fc['password'].value}).subscribe((data) => {
+       password: this.fc['password'].value}).subscribe((data: any) => {
         //  this.router.navigateByUrl(this.returnUrl);
-        console.log("data is---->",data);
-        this.router.navigate(['/home'])
+        if(data.status == "success"){
+          console.log("data is---->",data);
+          this.router.navigate(['/home'])
+        }else{
+          
+        }
+
        });
   }
 

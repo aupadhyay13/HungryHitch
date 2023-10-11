@@ -22,12 +22,16 @@ export class UserService{
           tap({
             next: (user : any) =>{
                 console.log("user data is---->",user);
-              this.setUserToLocalStorage(user.data);
-              this.userSubject.next(user.data);
-              this.toastrService.success(
-                ``,
-               user.message
-              )
+              if(user.status == "success"){
+                this.setUserToLocalStorage(user.data);
+                this.userSubject.next(user.data);
+                this.toastrService.success('',  user.message);
+              }else{
+                this.toastrService.error('', user.message);
+
+              }
+               
+              
             },
             error: (errorResponse) => {
               this.toastrService.error(errorResponse.error, 'Login Failed');

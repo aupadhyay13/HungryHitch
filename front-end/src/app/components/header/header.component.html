@@ -1,11 +1,15 @@
 
 <header>
     <div class="container">
-      <a routerLink="/home" class="logo">Hungry Hitch!</a>
+      <a routerLink="/home" class="logo">
+        <img src="assets\Hungry Hitch-02.png" alt="Hungry Hitch Logo">
+      </a>
       <nav>
         <ul>
           <li *ngIf="!isLoggedIn">
-            <a routerLink="/authentication">Login</a>
+            <div class="login-container">
+              <a routerLink="/authentication">Login</a>
+            </div>
           </li>
           <li *ngIf="isLoggedIn" class="menu-container">
             <a routerLink="/home">{{userData.name}}</a>

@@ -10,8 +10,8 @@ export class DefaultButtonComponent {
   type: 'submit' | 'button' = 'submit';
   @Input()
   text:string = 'Submit';
-  @Input()
-  bgColor = '#e72929';
+  // @Input()
+  // bgColor = '#4CAF50';
   @Input()
   color = 'white';
   @Input()
