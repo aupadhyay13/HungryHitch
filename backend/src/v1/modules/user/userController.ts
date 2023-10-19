@@ -76,4 +76,32 @@ export class UserController{
         }
         
     }
+
+    public updateProfile =  async (req: Request, res : Response) => {
+        try{
+            const { id } =  req['authUser'];
+            const result = await this.userUtil.updateUserProfile(req.body,id);
+           if(result){
+                res.status(200).send({
+                    status: Constants.SUCCEESS,
+                    message: "Your Profile Updated Successfully!",
+                    data: result
+                })
+           }else{
+            res.status(200).send({
+                status: Constants.FAIL,
+                message: "Sorry! email already associated with another user.",
+                data: result
+            })
+           }
+
+        }catch(error){
+            console.log("Error in updating profile---->",error);
+            res.status(400).send({
+                status : Constants.FAIL,
+                message: "There is an error while updating your profile.Please try again later."
+            })
+        }
+        
+    }
 }
