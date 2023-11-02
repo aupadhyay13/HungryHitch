@@ -12,6 +12,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { AddAdminComponent } from './components/add-admin/add-admin.component';
+import { AdminListComponent } from './components/admin-list/admin-list.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { AddFoodComponent } from './components/add-food/add-food.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { ToastrModule } from 'ngx-toastr';
     FooterComponent,
     SidebarComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    AddAdminComponent,
+    AdminListComponent,
+    UserListComponent,
+    AddFoodComponent
   ],
   imports: [
     BrowserModule,

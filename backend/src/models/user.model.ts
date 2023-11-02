@@ -6,14 +6,16 @@ export interface User{
     name:string;
     address:string;
     isAdmin:boolean;
+    isDisabled:boolean;
 }
 
 export const UserSchema = new Schema<User>({
     name: {type: String, required: true},
     email: {type: String, required: true, unique: true},
     password: {type: String, required: true},
-    address: {type: String, required: true},
+    address: {type: String, default:null},
     isAdmin: {type: Boolean, required: true},
+    isDisabled: {type: Boolean, default: false}
 }, {
     timestamps: true,
     toJSON:{

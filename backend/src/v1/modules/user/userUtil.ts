@@ -15,7 +15,8 @@ export class UserUtil{
               email: email.toLowerCase(),
               password: encryptedPassword,
               address,
-              isAdmin: false
+              isAdmin: false,
+              isDisabled : false
             }
         
             const dbUser = await UserModel.create(newUser);

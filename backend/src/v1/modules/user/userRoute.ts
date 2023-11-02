@@ -9,4 +9,5 @@ router.post("/signup", userController.signUp);
 router.post("/login", userController.login);
 router.get("/get-food-list", middlware.getAuthorizedUser,userController.getProducts);
 router.post("/update-profile", middlware.getAuthorizedUser,userController.updateProfile);
+
 export const UserRoute: Router = router;

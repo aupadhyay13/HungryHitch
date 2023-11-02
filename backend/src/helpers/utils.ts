@@ -12,6 +12,7 @@ export class Utils{
           email: user.email,
           name: user.name,
           address: user.address,
+          isDisabled: user.isDisabled,
           token: token
         };
       }

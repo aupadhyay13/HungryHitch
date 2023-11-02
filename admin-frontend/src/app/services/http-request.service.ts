@@ -11,12 +11,12 @@ export class HttpRequestService {
     private http: HttpClient,
   ) { }
 
-  getRequest(url: any, params?: any) {
-    return this.http.get(`${environment.API_URL}${url}`, { params , observe: 'response' })
+  getRequest(url: any, token: any,params?: any) {
+    return this.http.get(`${environment.API_URL}${url}`, { params , headers: {authorization : token},observe: 'response' })
     .pipe(map((res) => res.body));
   }
 
-  postRequest(url: any, data: any) {
+  postRequest(url: any,data: any) {
     return this.http.post(`${environment.API_URL}${url}`, data, { observe: 'response' })
     .pipe(map((res) => res.body));
  }
