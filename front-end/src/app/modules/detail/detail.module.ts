@@ -1,31 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HomeComponent } from './home/home.component';
+import { DetailComponent } from './detail.component';
 import { RouterModule, Routes } from '@angular/router';
-import { DetailComponent } from '../detail/detail.component';
-
+import { BrowserModule } from '@angular/platform-browser';
 
 const routes: Routes = [
     {
       path: '',
-      component: HomeComponent
-    },
-    {
-      path: 'detail/:id',
       component: DetailComponent
     }
   ];
 @NgModule({
   declarations: [
-  
-    HomeComponent
+
+    DetailComponent
   ],
   imports: [
+    BrowserModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ]
 })
-export class HomeModule { }
+export class DetailModule { }

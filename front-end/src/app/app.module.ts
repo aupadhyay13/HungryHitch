@@ -10,12 +10,14 @@ import { HeaderComponent } from './components/header/header.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { DetailComponent } from './modules/detail/detail.component';
+import { DetailModule } from './modules/detail/detail.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,7 @@ import { ToastrModule } from 'ngx-toastr';
     })
   ],
   providers: [],
+  exports: [DetailModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
