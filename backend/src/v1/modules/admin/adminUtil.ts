@@ -44,12 +44,14 @@ export class AdminUtil{
 
     public async addFoodItem(foodObj){
         try{
-            const {name,cookTime,price} = foodObj;
+            const {name,cookTime,price, image} = foodObj;
 
             const foodItem: Food = {
                 name,
                 cookTime,
-                price: +price
+                price: +price,
+                image,
+                isDisabled: false
               }
           
               const fItem = await FoodModel.create(foodItem);
@@ -95,6 +97,19 @@ export class AdminUtil{
             throw err;
         }
     }
+
+    public async changeFoodStatus(_id, status){
+        try{
+                console.log("_id is--->",_id);
+                console.log("status is--->",status);
+              const data = await FoodModel.updateOne({_id: _id}, {$set: {isDisabled : status}});
+              return data;
+        }catch(err){
+            console.log("Error in getting admin list isss--->",err);
+            throw err;
+        }
+    }
+
 
     public async getUserList(){
         try{

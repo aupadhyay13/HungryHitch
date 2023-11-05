@@ -16,8 +16,16 @@ export class AdminService {
     return this.httpRequest.postRequest('admin/create-admin', detail);
   }
 
+  addFoodItem(detail: any) {
+    return this.httpRequest.postRequest('admin/add-product', detail);
+  }
+
   getAdminList() {
     return this.httpRequest.getRequest('admin/get-admin-list',this.getTokenFromLocalStorage());
+  }
+
+  getFoodList() {
+    return this.httpRequest.getRequest('admin/get-product-list',this.getTokenFromLocalStorage());
   }
 
   getUserList() {
@@ -27,6 +35,10 @@ export class AdminService {
 
   changeAdminStatus(reqObj : any) {
     return this.httpRequest.getRequest('admin/disable-enable-admin',this.getTokenFromLocalStorage(),reqObj);
+  }
+
+  changeFoodItemStatus(reqObj : any) {
+    return this.httpRequest.getRequest('admin/disable-enable-food',this.getTokenFromLocalStorage(),reqObj);
   }
 
   getTokenFromLocalStorage(){

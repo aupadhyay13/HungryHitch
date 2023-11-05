@@ -16,6 +16,7 @@ import { AddAdminComponent } from './components/add-admin/add-admin.component';
 import { AdminListComponent } from './components/admin-list/admin-list.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { AddFoodComponent } from './components/add-food/add-food.component';
+import { FoodListComponent } from './components/food-list/food-list.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AddFoodComponent } from './components/add-food/add-food.component';
     AddAdminComponent,
     AdminListComponent,
     UserListComponent,
-    AddFoodComponent
+    AddFoodComponent,
+    FoodListComponent
   ],
   imports: [
     BrowserModule,

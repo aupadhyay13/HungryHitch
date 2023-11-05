@@ -162,4 +162,23 @@ export class AdminController{
         
     }
 
+
+    public changeFoodStatus =  async (req: Request, res : Response) => {
+        try{
+            const {_id , status} = req.query;
+
+            const result = await this.adminUtil.changeFoodStatus(_id, status);
+            res.status(200).send({
+                status: Constants.SUCCEESS,
+                message: "Status Changed Successfully!"
+            })
+        }catch(error){
+            console.log("Error in updaing food status---->",error);
+            res.status(400).send({
+                status : Constants.FAIL,
+                message: "There is an error while updating food status.Please try again later."
+            })
+        }
+        
+    }
 }
