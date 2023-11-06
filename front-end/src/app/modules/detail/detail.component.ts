@@ -11,14 +11,17 @@ import { FoodService } from 'src/app/services/food.service';
 export class DetailComponent implements OnInit{
   food!: Food;
 
-  constructor(activatedRoute:ActivatedRoute, foodService:FoodService,
+  constructor(private activatedRoute:ActivatedRoute, private foodService:FoodService,
     // private cartService:CartService, 
     private router: Router) {
-    activatedRoute.params.subscribe((params) => {
-      debugger;
+    this.activatedRoute.params.subscribe((params) => {
       if(params['id'])
-      this.food=foodService.getFoodById(params['id'])[0];
-    
+      {
+        console.log("id is--->",params['id']);
+        this.getFoodItem(params['id']);
+      }
+      // this.food=foodService.getfoodItem(params['id'])[0];
+      
       // foodService.getFoodById(params['id']).subscribe(serverFood => {
       //   this.food = serverFood;
       // });
@@ -31,6 +34,15 @@ export class DetailComponent implements OnInit{
   addToCart(){
     // this.cartService.addToCart(this.food);
     // this.router.navigateByUrl('/cart-page');
+  }
+
+  getFoodItem(foodId : any){
+    this.foodService.getfoodItem({foodId}).subscribe((item : any) => {
+        if(item.status == "success"){
+          console.log("item is-->",item);
+          this.food = item.data;
+        }
+    })
   }
 
 }

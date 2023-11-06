@@ -7,7 +7,8 @@ const router: Router = Router();
 const userController: UserController = new UserController();
 router.post("/signup", userController.signUp);
 router.post("/login", userController.login);
-router.get("/get-food-list", middlware.getAuthorizedUser,userController.getProducts);
+router.get("/get-food-list",userController.getProducts);
+router.get("/get-food-item",userController.getProduct);
 router.post("/update-profile", middlware.getAuthorizedUser,userController.updateProfile);
 
 export const UserRoute: Router = router;

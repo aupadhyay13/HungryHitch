@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {TextInputComponent} from '../../../components/text-input/text-input.component';
 import { UserService } from 'src/app/services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,8 @@ export class RegisterComponent implements OnInit{
     private formBuilder: FormBuilder,
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -54,11 +56,20 @@ export class RegisterComponent implements OnInit{
       address: fv.address
     };
     console.log("user is--->",user);
-    this.userService.register(user).subscribe((user : any) => {
-        console.log("user is---->",user);
-      // this.router.navigateByUrl(this.returnUrl);
-      this.router.navigate(['/home'])
-    })
+    this.userService.register(user).subscribe((data: any) => {
+      if(data.status == "success"){
+        console.log("data is---->",data);
+        this.toastrService.success('',  data.message);
+        this.userService.setUserToLocalStorage(data.data);
+        this.userService.userSubject.next(data.data);
+        this.router.navigate(['/home'])
+      }else{
+        this.toastrService.error('',  data.message);
+      }
+
+     },(err: any) => {
+      this.toastrService.error(err.error, 'Login Failed');
+     });
   }
 }
 

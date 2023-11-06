@@ -77,6 +77,26 @@ export class UserController{
         
     }
 
+
+    public getProduct =  async (req: Request, res : Response) => {
+        try{
+           
+            const {foodId} = req.query;
+            const result = await this.userUtil.getFoodItem(foodId);
+            res.status(200).send({
+                status: Constants.SUCCEESS,
+                data: result
+            })
+        }catch(error){
+            console.log("Error in getting products---->",error);
+            res.status(400).send({
+                status : Constants.FAIL,
+                message: "There is an error while fetching products.Please try again later."
+            })
+        }
+        
+    }
+
     public updateProfile =  async (req: Request, res : Response) => {
         try{
             const { id } =  req['authUser'];

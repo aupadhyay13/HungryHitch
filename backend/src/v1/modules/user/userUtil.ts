@@ -48,7 +48,18 @@ export class UserUtil{
     public async getFoodItems(){
         try{
           
-              const data = await FoodModel.find({});
+              const data = await FoodModel.find({isDisabled : false});
+              return data;
+        }catch(err){
+            console.log("Error in creating food item isss--->",err);
+            throw err;
+        }
+    }
+
+    public async getFoodItem(foodId){
+        try{
+          
+              const data = await FoodModel.findOne({_id : foodId});
               return data;
         }catch(err){
             console.log("Error in creating food item isss--->",err);
