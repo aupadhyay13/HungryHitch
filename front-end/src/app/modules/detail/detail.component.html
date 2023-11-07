@@ -1,7 +1,7 @@
 
 <!-- {{food | json}} -->
 <div class="container">
-    <img [src]="food.imageUrl" [alt]="food.name" />
+    <img [src]="food.image" [alt]="food.name" />
 
     <div class="details">
         <div class="header">
@@ -28,7 +28,7 @@
 
         <div class="price">
             <span>
-                {{food.price | currency}}
+                ${{food.price}}
             </span>
         </div>
 

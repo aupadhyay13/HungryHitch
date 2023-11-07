@@ -1,0 +1,69 @@
+
+<div class="row">
+    
+    <div class="col-md-10" style="margin-top:5%">
+    
+    <div class="card card-secondary">
+    <div class="card-header">
+    <h3 class="card-title">Add Food Item</h3>
+    </div>
+    
+    
+    <form [formGroup]="foodAddForm" >
+    <div class="card-body">
+    <div class="form-group">
+    <label for="exampleInputName">Item Name</label>
+    <input formControlName="name" type="text" class="form-control" id="exampleInputName" placeholder="Enter Food Item Name">
+    <div *ngIf="foodAddForm.controls.name.invalid && (foodAddForm.controls.name.dirty || foodAddForm.controls.name.touched)"
+    class="alert alert-danger mt-1">
+
+    <div *ngIf="foodAddForm.controls.name.errors?.['required']">
+        Food Item Name is required.
+    </div>
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="exampleInputPrice">Price</label>
+    <input formControlName="price" type="number" min="2"  class="form-control" id="exampleInputPrice" placeholder="Price">
+    <div *ngIf="foodAddForm.controls.price.invalid && (foodAddForm.controls.price.dirty || foodAddForm.controls.price.touched)"
+    class="alert alert-danger mt-1">
+
+    <div *ngIf="foodAddForm.controls.price.errors?.['required']">
+        Food Item Price is required.
+    </div>
+    <div *ngIf="foodAddForm.controls.price.errors?.['min']">
+        Food Item Price must not be lesser than 2.
+    </div>
+    </div>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputCookTime">Cook Time</label>
+        <input formControlName="cookTime" type="text" class="form-control" id="exampleInputCookTime" placeholder="Cook Time">
+        <div *ngIf="foodAddForm.controls.cookTime.invalid && (foodAddForm.controls.cookTime.dirty || foodAddForm.controls.cookTime.touched)"
+        class="alert alert-danger mt-1">
+    
+        <div *ngIf="foodAddForm.controls.cookTime.errors?.['required']">
+            Cook Time is required.
+        </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputImage">Image</label>
+        <input formControlName="image" type="text" class="form-control" id="exampleInputImage" placeholder="Image">
+        <div *ngIf="foodAddForm.controls.image.invalid && (foodAddForm.controls.image.dirty || foodAddForm.controls.image.touched)"
+        class="alert alert-danger mt-1">
+    
+        <div *ngIf="foodAddForm.controls.image.errors?.['required']">
+            Image is required.
+        </div>
+        </div>
+    </div>     
+    </div>
+    
+    <div class="card-footer">
+    <button [disabled]="foodAddForm.invalid" (click)="addFood()"  type="submit" class="btn btn-secondary">Submit</button>
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>

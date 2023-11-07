@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-12" style="margin-top:5%">
+    <div class="card card-secondary">
+    <div class="card-header">
+    <h3 class="card-title">Admin List</h3>
+
+    </div>
+    
+    <div class="card-body table-responsive p-0">
+    <table class="table table-hover text-nowrap">
+    <thead>
+    <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Created At</th>
+    <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let admin of adminList;let i=index">
+        <td>{{admin.name}}</td>
+        <td>{{admin.email}}</td>
+        <td>{{admin.createdAt | date}}</td>
+        <td>
+            <div class="custom-control custom-switch">
+                <input type="checkbox" (click)="disableAdmin(admin._id,admin.isDisabled)" class="custom-control-input" id="{{admin._id}}" [checked]="admin.isDisabled === true ? true : null" [disabled]="admin.email == adminID">
+                <label class="custom-control-label" for="{{admin._id}}"></label>
+            </div>
+        </td>
+       
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    
+    </div>
+    
+    </div>
+    </div>

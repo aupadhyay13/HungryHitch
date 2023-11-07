@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ToastrService } from "ngx-toastr";
 import { User } from "../models/User";
 import { USER_LOGIN_URL, USER_REGISTER_URL } from "../constants/constant";
+import { HttpRequestService } from "./http-requests.service";
 
 @Injectable({
     providedIn: 'root'
@@ -13,31 +14,14 @@ export class UserService{
     public userSubject =
     new BehaviorSubject<any>(this.getUserFromLocalStorage());
     public userObservable:Observable<any>;
-    constructor(private http:HttpClient, private toastrService:ToastrService) {
+    constructor(private http:HttpClient, private toastrService:ToastrService,
+      private httpRequestService: HttpRequestService
+      ) {
         this.userObservable = this.userSubject.asObservable();
       }
     
-    login(userLogin:any):Observable<User>{
-        return this.http.post<any>(USER_LOGIN_URL, userLogin).pipe(
-          tap({
-            next: (user : any) =>{
-                console.log("user data is---->",user);
-              if(user.status == "success"){
-                this.setUserToLocalStorage(user.data);
-                this.userSubject.next(user.data);
-                this.toastrService.success('',  user.message);
-              }else{
-                this.toastrService.error('', user.message);
-
-              }
-               
-              
-            },
-            error: (errorResponse) => {
-              this.toastrService.error(errorResponse.error, 'Login Failed');
-            }
-          })
-        );
+      login(userLogin:any){
+        return this.httpRequestService.postRequest('user/login', userLogin);
       }
 
       public getUserFromLocalStorage(): User{
@@ -48,7 +32,7 @@ export class UserService{
         return new User();
       }
 
-      private setUserToLocalStorage(user:User){
+      public setUserToLocalStorage(user:User){
         localStorage.setItem('User', JSON.stringify(user));
       }
 
@@ -57,24 +41,8 @@ export class UserService{
         this.userSubject.next(new User());
       }
 
-
-  public register(userRegiser:any): Observable<User>{
-    return this.http.post<User>(USER_REGISTER_URL, userRegiser).pipe(
-      tap({
-        next: (user :any) => {
-          this.setUserToLocalStorage(user.data);
-          this.userSubject.next(user);
-          this.toastrService.success(
-            `Welcome to the Hungry Hitch ${user.name}`,
-            user.message
-          )
-        },
-        error: (errorResponse) => {
-          this.toastrService.error(errorResponse.error,
-            'Register Failed')
-        }
-      })
-    )
+  register(userRegiser:any){
+    return this.httpRequestService.postRequest('user/signup', userRegiser);
   }
     
 } 

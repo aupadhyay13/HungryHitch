@@ -40,7 +40,7 @@ import { AuthenticationModule } from './modules/authentication/authentication.mo
     })
   ],
   providers: [],
-  exports: [DetailModule, ],
+  exports: [DetailModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

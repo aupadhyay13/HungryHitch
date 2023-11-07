@@ -15,7 +15,8 @@ export class UserUtil{
               email: email.toLowerCase(),
               password: encryptedPassword,
               address,
-              isAdmin: false
+              isAdmin: false,
+              isDisabled : false
             }
         
             const dbUser = await UserModel.create(newUser);
@@ -47,10 +48,40 @@ export class UserUtil{
     public async getFoodItems(){
         try{
           
-              const data = await FoodModel.find({});
+              const data = await FoodModel.find({isDisabled : false});
               return data;
         }catch(err){
             console.log("Error in creating food item isss--->",err);
+            throw err;
+        }
+    }
+
+    public async getFoodItem(foodId){
+        try{
+          
+              const data = await FoodModel.findOne({_id : foodId});
+              return data;
+        }catch(err){
+            console.log("Error in creating food item isss--->",err);
+            throw err;
+        }
+    }
+
+
+    public async updateUserProfile(reqObj,userId){
+        try{
+                if(reqObj['email']){
+                    const isEmailExist = await UserModel.find({email : reqObj['email']});
+                    if(isEmailExist.length > 0){
+                        return false;
+                    }
+                }
+              await UserModel.updateOne({_id : userId},{$set: reqObj});
+              const updatedResult = await UserModel.find({_id : userId},{name: 1,email: 1,address:1});
+
+              return updatedResult[0];
+        }catch(err){
+            console.log("Error in updating food item isss--->",err);
             throw err;
         }
     }

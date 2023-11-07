@@ -9,11 +9,10 @@ export class AdminUtil{
             const {name, email, address, password} = adminObj;
             const encryptedPassword = await bcrypt.hash(password, 10);
 
-            const admin:User = {
+            const admin:any = {
               name,
               email: email.toLowerCase(),
               password: encryptedPassword,
-              address,
               isAdmin: true
             }
         
@@ -45,12 +44,14 @@ export class AdminUtil{
 
     public async addFoodItem(foodObj){
         try{
-            const {name,cookTime,price} = foodObj;
+            const {name,cookTime,price, image} = foodObj;
 
             const foodItem: Food = {
                 name,
                 cookTime,
-                price: +price
+                price: +price,
+                image,
+                isDisabled: false
               }
           
               const fItem = await FoodModel.create(foodItem);
@@ -68,7 +69,55 @@ export class AdminUtil{
               const data = await FoodModel.find({});
               return data;
         }catch(err){
-            console.log("Error in creating food item isss--->",err);
+            console.log("Error in getting food item list isss--->",err);
+            throw err;
+        }
+    }
+
+
+    public async getAdminList(){
+        try{
+          
+              const data = await UserModel.find({isAdmin: true});
+              return data;
+        }catch(err){
+            console.log("Error in getting admin list isss--->",err);
+            throw err;
+        }
+    }
+
+    public async changeAdminStatus(_id, status){
+        try{
+                console.log("_id is--->",_id);
+                console.log("status is--->",status);
+              const data = await UserModel.updateOne({_id: _id}, {$set: {isDisabled : status}});
+              return data;
+        }catch(err){
+            console.log("Error in getting admin list isss--->",err);
+            throw err;
+        }
+    }
+
+    public async changeFoodStatus(_id, status){
+        try{
+                console.log("_id is--->",_id);
+                console.log("status is--->",status);
+              const data = await FoodModel.updateOne({_id: _id}, {$set: {isDisabled : status}});
+              return data;
+        }catch(err){
+            console.log("Error in getting admin list isss--->",err);
+            throw err;
+        }
+    }
+
+
+    public async getUserList(){
+        try{
+          
+              const data = await UserModel.find({isAdmin: false});
+              return data;
+        }catch(err){
+            console.log("Error in getting admin list isss--->",err);
             throw err;
         }
     }

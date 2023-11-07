@@ -45,6 +45,7 @@ export class Middleware {
                 const result: any = await UserModel.find({ _id: tokenInfo.id});
                 if(result){
                     console.log("User login chheeeee bhai");
+                    req['authUser'] = result[0];
                     next();
                 }else{
                     res.status(400).send({

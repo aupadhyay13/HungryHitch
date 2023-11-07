@@ -16,7 +16,17 @@ export class HomeComponent implements OnInit{
       this.foods = foodService.getAll();
   }
   ngOnInit(): void {
-  
+    this.getFoodList();
+  }
+
+
+  getFoodList(){
+    this.foodService.getfoodItems().subscribe((data : any) => {
+        if(data.status == "success"){
+          console.log("food list is--->",data);
+          this.foods = data.data;
+        }
+    })
   }
 
 }

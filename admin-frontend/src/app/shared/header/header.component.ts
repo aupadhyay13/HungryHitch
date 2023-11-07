@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from 'src/app/services/admin.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -7,15 +8,19 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit{
-  constructor(private authService: AuthService){
+  constructor(private authService: AuthService,private adminService: AdminService){
 
   }
 
   ngOnInit(): void {
-    
+    this.getAdminName()
   }
 
   logout(){
     this.authService.logout();
+  }
+
+  getAdminName(){
+    return this.adminService.getAdminName()
   }
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {DefaultButtonComponent} from '../../../components/default-button/default-button.component';
 import { UserService } from 'src/app/services/user.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit  {
   constructor(private formBuilder: FormBuilder,
      private userService:UserService,
      private activatedRoute:ActivatedRoute,
-     private router:Router) { }
+     private router:Router,
+     private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -36,14 +38,18 @@ export class LoginComponent implements OnInit  {
 
     this.userService.login({email:this.fc["email"].value,
        password: this.fc['password'].value}).subscribe((data: any) => {
-        //  this.router.navigateByUrl(this.returnUrl);
         if(data.status == "success"){
           console.log("data is---->",data);
+          this.toastrService.success('',  data.message);
+          this.userService.setUserToLocalStorage(data.data);
+          this.userService.userSubject.next(data.data);
           this.router.navigate(['/home'])
         }else{
-          
+          this.toastrService.error('',  data.message);
         }
 
+       },(err: any) => {
+        this.toastrService.error(err.error, 'Login Failed');
        });
   }
 
