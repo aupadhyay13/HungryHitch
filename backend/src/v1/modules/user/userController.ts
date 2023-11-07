@@ -97,10 +97,29 @@ export class UserController{
         
     }
 
+    public getUserProfile =  async (req: Request, res : Response) => {
+        try{
+           
+            const {_id} = req['authUser'];
+            const result = await this.userUtil.getUserProfile(_id);
+            res.status(200).send({
+                status: Constants.SUCCEESS,
+                data: result
+            })
+        }catch(error){
+            console.log("Error in getting user profile---->",error);
+            res.status(400).send({
+                status : Constants.FAIL,
+                message: "There is an error while fetching user profile.Please try again later."
+            })
+        }
+        
+    }
+
     public updateProfile =  async (req: Request, res : Response) => {
         try{
-            const { id } =  req['authUser'];
-            const result = await this.userUtil.updateUserProfile(req.body,id);
+            const { email } =  req.body;
+            const result = await this.userUtil.updateUserProfile(req.body,email);
            if(result){
                 res.status(200).send({
                     status: Constants.SUCCEESS,

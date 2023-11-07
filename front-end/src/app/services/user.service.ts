@@ -24,12 +24,31 @@ export class UserService{
         return this.httpRequestService.postRequest('user/login', userLogin);
       }
 
+      getUserProfile(){
+        return this.httpRequestService.getRequest('user/get-profile', this.getLoggedInUserData("token"));
+      }
+
+      updateUserProfile(data: any){
+        data._id = this.getLoggedInUserData("userId");
+        return this.httpRequestService.postRequest('user/update-profile', data);
+      }
+
       public getUserFromLocalStorage(): User{
         const userData = localStorage.getItem('User');
         if(userData){
             return JSON.parse(userData) as User;   
         }
         return new User();
+      }
+
+      public getLoggedInUserData(type : string) {
+        const userData = localStorage.getItem('User');
+        if(userData && type=="userId"){
+          return JSON.parse(userData)['_id']
+        }
+        if(userData && type=="token"){
+          return JSON.parse(userData)['token']
+        }
       }
 
       public setUserToLocalStorage(user:User){

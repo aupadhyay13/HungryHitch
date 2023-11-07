@@ -11,7 +11,7 @@ const routes = new Routes();
 app.use(express.json());
 app.use(cors({
     credentials:true,
-    origin:["http://localhost:4200","http://localhost:44441"]
+    origin:["http://localhost:4200","http://localhost:4300"]
 }));
 app.use("/api/v1", routes.path());
 app.get('/', (req, res) => {

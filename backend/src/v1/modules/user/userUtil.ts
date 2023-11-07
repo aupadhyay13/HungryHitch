@@ -67,17 +67,29 @@ export class UserUtil{
         }
     }
 
+    public async getUserProfile(userId){
+        try{
+          
+              const data = await UserModel.findOne({_id : userId},{address: 1, name: 1, email: 1});
+              return data;
+        }catch(err){
+            console.log("Error in getting user profile isss--->",err);
+            throw err;
+        }
+    }
 
-    public async updateUserProfile(reqObj,userId){
+    public async updateUserProfile(reqObj,email){
         try{
                 if(reqObj['email']){
-                    const isEmailExist = await UserModel.find({email : reqObj['email']});
-                    if(isEmailExist.length > 0){
+                    const isEmailExist = await UserModel.find({email : email});
+                   console.log("isEmailExist",isEmailExist);
+                   console.log("userId",email);
+                    if(isEmailExist.length > 0 && isEmailExist[0].email !== email){
                         return false;
                     }
                 }
-              await UserModel.updateOne({_id : userId},{$set: reqObj});
-              const updatedResult = await UserModel.find({_id : userId},{name: 1,email: 1,address:1});
+              await UserModel.updateOne({email : email},{$set: reqObj});
+              const updatedResult = await UserModel.find({email : email},{name: 1,email: 1,address:1});
 
               return updatedResult[0];
         }catch(err){
