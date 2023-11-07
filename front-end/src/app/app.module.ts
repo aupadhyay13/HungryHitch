@@ -12,6 +12,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { DetailComponent } from './modules/detail/detail.component';
 import { DetailModule } from './modules/detail/detail.module';
+import { UserProfileComponent } from './modules/user-profile/user-profile.component';
+import { TextInputComponent } from './components/text-input/text-input.component';
+import { InputContainerComponent } from './components/input-container/input-container.component';
+import { InputValidationComponent } from './components/input-validation/input-validation.component';
+import { AuthenticationModule } from './modules/authentication/authentication.module';
 
 
 @NgModule({
@@ -27,6 +32,7 @@ import { DetailModule } from './modules/detail/detail.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AuthenticationModule,
     ToastrModule.forRoot({
       timeOut:3000,
       positionClass:'toast-bottom-right',
@@ -34,7 +40,7 @@ import { DetailModule } from './modules/detail/detail.module';
     })
   ],
   providers: [],
-  exports: [DetailModule],
+  exports: [DetailModule, ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

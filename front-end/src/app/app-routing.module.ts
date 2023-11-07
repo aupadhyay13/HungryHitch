@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { UserProfileComponent } from './modules/user-profile/user-profile.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,10 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./modules/home/home.module').then(auth => auth.HomeModule )
   },
-
+  {
+    path: 'user-profile',
+    component: UserProfileComponent
+  },
 ];
 
 @NgModule({

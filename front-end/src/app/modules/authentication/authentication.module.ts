@@ -13,24 +13,26 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { ToastrModule } from 'ngx-toastr';
+import { UserProfileComponent } from '../user-profile/user-profile.component';
 
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    TextInputComponent,
-    InputContainerComponent,
-    InputValidationComponent,
     DefaultButtonComponent,
     TitleComponent,
     RegisterComponent,
+    UserProfileComponent,
+    TextInputComponent,
+    InputContainerComponent,
+    InputValidationComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     AuthenticationRoutingModule
-  ]
+  ],
 })
 export class AuthenticationModule { }

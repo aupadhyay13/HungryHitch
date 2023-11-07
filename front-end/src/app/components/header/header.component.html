@@ -14,7 +14,7 @@
           <li *ngIf="isLoggedIn" class="menu-container">
             <a routerLink="/home">{{userData.name}}</a>
             <div class="menu">
-              <a routerLink="/profile">Profile</a>
+              <a routerLink="user-profile">Profile</a>
               <a routerLink="/orders">Orders</a>
               <a href="#" role="button" (click)="logout()">Logout</a>
             </div>
