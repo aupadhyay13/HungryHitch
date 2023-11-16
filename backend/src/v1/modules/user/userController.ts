@@ -38,11 +38,19 @@ export class UserController{
         try{
             const result = await this.userUtil.login(req.body);
             if(result){
-                res.status(200).send({
-                    status: Constants.SUCCEESS,
-                    message: "You are logged in successully!",
-                    data: result
-                })
+                if(result.isDisabled){
+                    res.status(200).send({
+                        status: Constants.FAIL,
+                        message: "Your account is currently disabled.Please contact support.",
+                    })
+                }else{
+                    res.status(200).send({
+                        status: Constants.SUCCEESS,
+                        message: "You are logged in successully!",
+                        data: result
+                    })
+                }
+      
             }else{
                 res.status(200).send({
                     status: Constants.FAIL,
