@@ -140,6 +140,17 @@ export class AdminUtil{
         }
     }
 
+    public async getCategories(){
+        try{
+          
+              const data = await CategoryModel.find({});
+              return data;
+        }catch(err){
+            console.log("Error in getting category list isss--->",err);
+            throw err;
+        }
+    }
+
 
     public async getAdminList(){
         try{

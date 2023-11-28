@@ -16,6 +16,7 @@ router.get("/disable-enable-resturant", middleware.getAuthorizedAdmin,adminContr
 router.post("/add-food-category",adminController.addFoodCategory);
 
 router.get("/get-product-list", middleware.getAuthorizedAdmin,adminController.getProducts);
+router.get("/get-category-list", middleware.getAuthorizedAdmin,adminController.getCategoryList);
 
 router.get("/get-resturant-list", middleware.getAuthorizedAdmin,adminController.getResturants);
 router.get("/get-admin-list", middleware.getAuthorizedAdmin,adminController.getAdminList);

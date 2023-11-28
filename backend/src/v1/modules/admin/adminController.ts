@@ -143,6 +143,24 @@ export class AdminController{
         
     }
 
+    public getCategoryList =  async (req: Request, res : Response) => {
+        try{
+           
+            const result = await this.adminUtil.getCategories();
+            res.status(200).send({
+                status: Constants.SUCCEESS,
+                data: result
+            })
+        }catch(error){
+            console.log("Error in getting categories---->",error);
+            res.status(400).send({
+                status : Constants.FAIL,
+                message: "There is an error while fetching categories.Please try again later."
+            })
+        }
+        
+    }
+
     public getResturants =  async (req: Request, res : Response) => {
         try{
            

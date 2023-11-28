@@ -40,6 +40,9 @@ export class AdminService {
   getResturantList() {
     return this.httpRequest.getRequest('admin/get-resturant-list',this.getTokenFromLocalStorage());
   }
+  getCategoryList() {
+    return this.httpRequest.getRequest('admin/get-category-list',this.getTokenFromLocalStorage());
+  }
 
   getUserList() {
     return this.httpRequest.getRequest('admin/get-user-list',this.getTokenFromLocalStorage());

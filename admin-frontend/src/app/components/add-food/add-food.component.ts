@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { NotificationAlertService } from 'src/app/services/notification-alert.service';
-
+declare var $: any;
 @Component({
   selector: 'app-add-food',
   templateUrl: './add-food.component.html',
@@ -12,9 +12,11 @@ import { NotificationAlertService } from 'src/app/services/notification-alert.se
 })
 export class AddFoodComponent {
   foodAddForm: any;
+  selectedCategories: any = [];
   fileToUpload: any | null = null;
   foodData = { name: '', price: 0 , cookTime: '', image: ''};
   resturantList: any;
+  categoryList: any;
   constructor(
     private authService: AuthService, 
     private formBuilder: FormBuilder,
@@ -23,9 +25,24 @@ export class AddFoodComponent {
     private adminService: AdminService){
 
   }
+  ngAfterViewInit() {
+    $('.fields-select').on('change',
+    (e: any) => 
+      //  console.log("aaauuiiii",e.target.value)
+      console.log("DSDFsf",document.querySelector("categories")?.nodeValue)
+ );
+}
 
   ngOnInit(): void {
     this.authService.enableAllTheme.next(true);
+    this.foodAddForm = this.formBuilder.group({
+      name: new FormControl('', [Validators.required]),
+      price: new FormControl('', [Validators.required, Validators.min(2)]),
+      cookTime: new FormControl('', [Validators.required]),
+      resturant: new FormControl(''),
+      categories: new FormControl(''),
+      image: new FormControl('', [Validators.required]),
+    });
     this.adminService.getResturantList().subscribe((res: any) => {
       if(res.status == 'success'){
         this.resturantList = res.data.filter((item: any) => item.isDisabled == false).map((item: any) => item);
@@ -33,12 +50,13 @@ export class AddFoodComponent {
         console.log("resturant list is--->",this.resturantList);
       }
   })
-    this.foodAddForm = this.formBuilder.group({
-      name: new FormControl('', [Validators.required]),
-      price: new FormControl('', [Validators.required, Validators.min(2)]),
-      cookTime: new FormControl('', [Validators.required]),
-      image: new FormControl('', [Validators.required]),
-    });
+  this.adminService.getCategoryList().subscribe((res: any) => {
+    if(res.status == 'success'){
+      this.categoryList = res.data;
+      console.log("category list is--->",this.resturantList);
+    }
+})
+
   }
 
   changeDropdown(){
@@ -46,6 +64,8 @@ export class AddFoodComponent {
   }
 
   addFood() {
+   console.log("foodAddForm is------------->",this.foodAddForm.value);
+   console.log("selected categ is------------->",this.selectedCategories);
     const formData = new FormData();
     formData.append('name', this.foodAddForm.value.name);
     formData.append('price', this.foodAddForm.value.price);
@@ -70,6 +90,10 @@ export class AddFoodComponent {
     if(event){
       this.fileToUpload = event.target.files.item(0)
     }
+  }
+
+  onSelectedCategoriesChange() {
+    console.log('Selected Categories:');
   }
 
 }
