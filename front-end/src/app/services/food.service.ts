@@ -22,6 +22,10 @@ export class FoodService {
     return this.getAll().filter((item: any) => item.id == foodId);
   }
 
+  getAllFoodsBySearchTerm(searchTerm: string): any{
+    return this.getAll().filter((any: { name: string; }) => any.name.toLowerCase().includes(searchTerm.toLowerCase()) )
+  }
+
   getfoodItems(): any{
     return this.httpRequestService.getRequest('user/get-food-list','');
   }
