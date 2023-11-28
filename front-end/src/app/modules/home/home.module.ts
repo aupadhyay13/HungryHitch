@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { DetailComponent } from '../detail/detail.component';
+import { SearchComponent } from 'src/app/components/search/search.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,7 @@ const routes: Routes = [
   ];
 @NgModule({
   declarations: [
-  
+    SearchComponent,
     HomeComponent
   ],
   imports: [
