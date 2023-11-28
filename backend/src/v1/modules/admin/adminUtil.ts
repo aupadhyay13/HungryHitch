@@ -1,9 +1,13 @@
+import { Cloudinary } from "../../../helpers/cloudinary";
 import { Utils } from "../../../helpers/utils";
+import { Category, CategoryModel } from "../../../models/category.model";
 import { Food, FoodModel } from "../../../models/food.model";
+import { Resturant, ResturantModel } from "../../../models/resturant.model";
 import { User, UserModel } from "../../../models/user.model";
 import bcrypt from 'bcryptjs';
 export class AdminUtil{
     private utils: Utils = new Utils();
+    private cloudinary : any = new Cloudinary();
     public async createAdmin(adminObj){
         try{
             const {name, email, address, password} = adminObj;
@@ -44,13 +48,20 @@ export class AdminUtil{
 
     public async addFoodItem(foodObj){
         try{
-            const {name,cookTime,price, image} = foodObj;
+            let imgResult;
+            console.log("foodObj is--->",foodObj.file);
+            if(foodObj.file){
+                imgResult = await this.cloudinary.uploadImage(foodObj);
+            }
+          
+           
+            const {name,cookTime,price} = foodObj.body;
 
             const foodItem: Food = {
                 name,
                 cookTime,
                 price: +price,
-                image,
+                image : imgResult ? imgResult.url : '',
                 isDisabled: false
               }
           
@@ -58,6 +69,50 @@ export class AdminUtil{
               return fItem;
         }catch(err){
             console.log("Error in creating food item isss--->",err);
+            throw err;
+        }
+    }
+
+    public async addResturant(restObj){
+        try{
+            let imgResult;
+            console.log("restObj is--->",restObj.file);
+            if(restObj.file){
+                imgResult = await this.cloudinary.uploadImage(restObj);
+            }
+          
+           
+            const {name,address,description} = restObj.body;
+
+            const resturantItem: Resturant = {
+                name,
+                address,
+                description,
+                logo : imgResult ? imgResult.url : '',
+                isDisabled: false
+              }
+          
+              const rItem = await ResturantModel.create(resturantItem);
+              return rItem;
+        }catch(err){
+            console.log("Error in creating food item isss--->",err);
+            throw err;
+        }
+    }
+
+    public async addFoodCategory(restObj){
+        try{
+            const {name,description} = restObj.body;
+
+            const categoryItem: Category = {
+                name,
+                description
+              }
+          
+              const catItem = await CategoryModel.create(categoryItem);
+              return catItem;
+        }catch(err){
+            console.log("Error in creating food category isss--->",err);
             throw err;
         }
     }
@@ -70,6 +125,17 @@ export class AdminUtil{
               return data;
         }catch(err){
             console.log("Error in getting food item list isss--->",err);
+            throw err;
+        }
+    }
+
+    public async getResturants(){
+        try{
+          
+              const data = await ResturantModel.find({});
+              return data;
+        }catch(err){
+            console.log("Error in getting resturant list isss--->",err);
             throw err;
         }
     }
@@ -106,6 +172,18 @@ export class AdminUtil{
               return data;
         }catch(err){
             console.log("Error in getting admin list isss--->",err);
+            throw err;
+        }
+    }
+
+    public async changeResturantStatus(_id, status){
+        try{
+                console.log("_id is--->",_id);
+                console.log("status is--->",status);
+              const data = await ResturantModel.updateOne({_id: _id}, {$set: {isDisabled : status}});
+              return data;
+        }catch(err){
+            console.log("Error in getting resturant status isss--->",err);
             throw err;
         }
     }

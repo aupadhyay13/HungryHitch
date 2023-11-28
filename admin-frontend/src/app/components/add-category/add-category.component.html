@@ -1,0 +1,45 @@
+
+<div class="row">
+    
+    <div class="col-md-10" style="margin-top:5%">
+    
+    <div class="card card-secondary">
+    <div class="card-header">
+    <h3 class="card-title">Add Food Category</h3>
+    </div>
+    
+    
+    <form [formGroup]="categoryAddForm" >
+    <div class="card-body">
+    <div class="form-group">
+    <label for="exampleInputName">Category Name</label>
+    <input formControlName="name" type="text" class="form-control" id="exampleInputName" placeholder="Enter Category Name">
+    <div *ngIf="categoryAddForm.controls.name.invalid && (categoryAddForm.controls.name.dirty || categoryAddForm.controls.name.touched)"
+    class="alert alert-danger mt-1">
+
+    <div *ngIf="categoryAddForm.controls.name.errors?.['required']">
+        Category Name is required.
+    </div>
+    </div>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputDescription">Category Description</label>
+        <textarea formControlName="description" type="text" class="form-control" id="exampleInputDescription" placeholder="Enter Category Description">
+       </textarea>
+            <div *ngIf="categoryAddForm.controls.description.invalid && (categoryAddForm.controls.description.dirty || categoryAddForm.controls.description.touched)"
+        class="alert alert-danger mt-1">
+    
+        <div *ngIf="categoryAddForm.controls.description.errors?.['required']">
+            Category Description is required.
+        </div>
+        </div>
+    </div>
+    </div>
+    
+    <div class="card-footer">
+    <button [disabled]="categoryAddForm.invalid" (click)="addCategory()"  type="submit" class="btn btn-secondary">Submit</button>
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>

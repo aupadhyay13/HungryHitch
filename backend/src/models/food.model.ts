@@ -13,7 +13,7 @@ export const FoodSchema = new Schema<Food>(
         name: {type: String, required:true},
         price: {type: Number, required:true},
         cookTime: {type: String, required:true},
-        image: {type: String, required:true},
+        image: {type: String, required:false},
         isDisabled: {type: Boolean, default: false}
     },{
         toJSON:{

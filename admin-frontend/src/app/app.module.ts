@@ -17,7 +17,9 @@ import { AdminListComponent } from './components/admin-list/admin-list.component
 import { UserListComponent } from './components/user-list/user-list.component';
 import { AddFoodComponent } from './components/add-food/add-food.component';
 import { FoodListComponent } from './components/food-list/food-list.component';
-
+import { AddResturantComponent } from './components/add-resturant/add-resturant.component';
+import { ResturantListComponent } from './components/resturant-list/resturant-list.component';
+import { AddCategoryComponent } from './components/add-category/add-category.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +32,10 @@ import { FoodListComponent } from './components/food-list/food-list.component';
     AdminListComponent,
     UserListComponent,
     AddFoodComponent,
-    FoodListComponent
+    FoodListComponent,
+    AddResturantComponent,
+    ResturantListComponent,
+    AddCategoryComponent
   ],
   imports: [
     BrowserModule,

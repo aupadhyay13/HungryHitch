@@ -20,12 +20,25 @@ export class AdminService {
     return this.httpRequest.postRequest('admin/add-product', detail);
   }
 
+  addFoodCategory(detail: any) {
+    return this.httpRequest.postRequest('admin/add-food-category', detail);
+  }
+
+  addResturant(detail: any) {
+    return this.httpRequest.postRequest('admin/add-resturant', detail);
+  }
+
+
   getAdminList() {
     return this.httpRequest.getRequest('admin/get-admin-list',this.getTokenFromLocalStorage());
   }
 
   getFoodList() {
     return this.httpRequest.getRequest('admin/get-product-list',this.getTokenFromLocalStorage());
+  }
+
+  getResturantList() {
+    return this.httpRequest.getRequest('admin/get-resturant-list',this.getTokenFromLocalStorage());
   }
 
   getUserList() {
@@ -39,6 +52,10 @@ export class AdminService {
 
   changeFoodItemStatus(reqObj : any) {
     return this.httpRequest.getRequest('admin/disable-enable-food',this.getTokenFromLocalStorage(),reqObj);
+  }
+
+  changeResturantStatus(reqObj : any) {
+    return this.httpRequest.getRequest('admin/disable-enable-resturant',this.getTokenFromLocalStorage(),reqObj);
   }
 
   getTokenFromLocalStorage(){

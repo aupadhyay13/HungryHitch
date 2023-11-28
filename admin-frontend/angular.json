@@ -32,6 +32,9 @@
             "styles": [
               "src/styles.scss",
               "node_modules/admin-lte/plugins/fontawesome-free/css/all.css",
+              "node_modules/admin-lte/plugins/select2/css/select2.min.css",
+              "node_modules/admin-lte/plugins/select2/css/select2.css",
+              "node_modules/admin-lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css",
               "node_modules/admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.css",
               "node_modules/admin-lte/dist/css/adminlte.css",
               "./node_modules/ngx-toastr/toastr.css"
@@ -39,6 +42,7 @@
             ],
             "scripts": [
               "node_modules/admin-lte/plugins/jquery/jquery.js",
+              "node_modules/admin-lte/plugins/jquery/jquery.min.js",
               "node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.js",
               "node_modules/admin-lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.js",
               "node_modules/admin-lte/dist/js/adminlte.js",
@@ -46,7 +50,10 @@
               "node_modules/admin-lte/plugins/raphael/raphael.js",
               "node_modules/admin-lte/plugins/jquery-mapael/jquery.mapael.js",
               "node_modules/admin-lte/plugins/chart.js/Chart.js",
-              "node_modules/admin-lte/dist/js/pages/dashboard2.js"
+              "node_modules/admin-lte/dist/js/pages/dashboard2.js",
+              "node_modules/admin-lte/plugins/select2/js/select2.full.min.js",
+              "node_modules/admin-lte/plugins/select2/js/select2.js",
+              "node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {

@@ -74,7 +74,7 @@ export class AdminController{
     public addProduct =  async (req: Request, res : Response) => {
         try{
            
-            const result = await this.adminUtil.addFoodItem(req.body);
+            const result = await this.adminUtil.addFoodItem(req);
             res.status(200).send({
                 status: Constants.SUCCEESS,
                 message: "Food Item Created Successfully!"
@@ -84,6 +84,42 @@ export class AdminController{
             res.status(400).send({
                 status : Constants.FAIL,
                 message: "There is an error while adding product.Please try again later."
+            })
+        }
+        
+    }
+
+    public addResturant =  async (req: Request, res : Response) => {
+        try{
+           
+            const result = await this.adminUtil.addResturant(req);
+            res.status(200).send({
+                status: Constants.SUCCEESS,
+                message: "Resturant added Successfully!"
+            })
+        }catch(error){
+            console.log("Error in adding product---->",error);
+            res.status(400).send({
+                status : Constants.FAIL,
+                message: "There is an error while adding resturant.Please try again later."
+            })
+        }
+        
+    }
+
+    public addFoodCategory =  async (req: Request, res : Response) => {
+        try{
+           
+            const result = await this.adminUtil.addFoodCategory(req);
+            res.status(200).send({
+                status: Constants.SUCCEESS,
+                message: "Category added Successfully!"
+            })
+        }catch(error){
+            console.log("Error in adding category---->",error);
+            res.status(400).send({
+                status : Constants.FAIL,
+                message: "There is an error while adding food category.Please try again later."
             })
         }
         
@@ -102,6 +138,24 @@ export class AdminController{
             res.status(400).send({
                 status : Constants.FAIL,
                 message: "There is an error while fetching products.Please try again later."
+            })
+        }
+        
+    }
+
+    public getResturants =  async (req: Request, res : Response) => {
+        try{
+           
+            const result = await this.adminUtil.getResturants();
+            res.status(200).send({
+                status: Constants.SUCCEESS,
+                data: result
+            })
+        }catch(error){
+            console.log("Error in getting resturants---->",error);
+            res.status(400).send({
+                status : Constants.FAIL,
+                message: "There is an error while fetching resturants.Please try again later."
             })
         }
         
@@ -174,6 +228,25 @@ export class AdminController{
             })
         }catch(error){
             console.log("Error in updaing food status---->",error);
+            res.status(400).send({
+                status : Constants.FAIL,
+                message: "There is an error while updating food status.Please try again later."
+            })
+        }
+        
+    }
+
+    public changeResturantStatus =  async (req: Request, res : Response) => {
+        try{
+            const {_id , status} = req.query;
+
+            const result = await this.adminUtil.changeResturantStatus(_id, status);
+            res.status(200).send({
+                status: Constants.SUCCEESS,
+                message: "Status Changed Successfully!"
+            })
+        }catch(error){
+            console.log("Error in updaing resturant status---->",error);
             res.status(400).send({
                 status : Constants.FAIL,
                 message: "There is an error while updating food status.Please try again later."

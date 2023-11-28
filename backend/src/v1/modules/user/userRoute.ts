@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { UserController } from "./userController";
 import { Middleware } from "../../../middleware";
-
 const middlware = new Middleware();
 const router: Router = Router();
 const userController: UserController = new UserController();

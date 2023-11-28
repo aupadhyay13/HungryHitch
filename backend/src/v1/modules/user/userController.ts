@@ -1,9 +1,12 @@
 import { Constants } from "../../../configs/constants";
+import { Cloudinary } from "../../../helpers/cloudinary";
+import { Utils } from "../../../helpers/utils";
 import { UserModel } from "../../../models/user.model";
 import { UserUtil } from "./userUtil";
 import { Request, Response } from "express";
 export class UserController{
     private userUtil: UserUtil = new UserUtil();
+
     public signUp =  async (req: Request, res : Response) => {
         try{
             const {email} = req.body;
@@ -151,4 +154,7 @@ export class UserController{
         }
         
     }
+
+
+
 }

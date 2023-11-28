@@ -99,12 +99,43 @@
         <a href="pages/widgets.html" class="nav-link">
             <i class="nav-icon fas fa-hamburger"></i>
             <p>
+                Restaurant Manag.
+               
+            </p>
+            <i class="right fas fa-angle-left"></i>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item" (click)="navigateToPage('add-resturant')">
+            <a role="button" class="nav-link" >
+            <i class="far fa-circle nav-icon"></i>
+            <p>Add Resturant</p>
+            </a>
+            </li>
+            <li class="nav-item" (click)="navigateToPage('resturant-list')">
+                <a role="button" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Resturant List</p>
+                </a>
+            </li>
+            
+        </ul>
+    </li>
+    <li class="nav-item menu-close">
+        <a href="pages/widgets.html" class="nav-link">
+            <i class="nav-icon fas fa-hamburger"></i>
+            <p>
                 Food Management
                
             </p>
             <i class="right fas fa-angle-left"></i>
         </a>
         <ul class="nav nav-treeview">
+            <li class="nav-item" (click)="navigateToPage('add-category')">
+                <a role="button" class="nav-link" >
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add Food Category</p>
+                </a>
+                </li>
             <li class="nav-item" (click)="navigateToPage('add-food-item')">
             <a role="button" class="nav-link" >
             <i class="far fa-circle nav-icon"></i>
