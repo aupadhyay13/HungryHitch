@@ -72,6 +72,8 @@ export class AddFoodComponent {
     formData.append('cookTime', this.foodAddForm.value.cookTime);
     formData.append('foodImage', this.fileToUpload);
     console.log("foodData data is--->",formData);
+    formData.append('resturant', "655e5405d650d7359d87d490");
+    formData.append('categories', "Italian Cuisine,snack");
     this.adminService.addFoodItem(formData).subscribe((res: any) => {
         console.log("res is--------->",res);
        if(res.status == "fail"){

@@ -49,7 +49,7 @@
     </div>
   <div class="form-group">
     <label >Resturant</label>
-    <select formControlName="resturant" class="form-control">
+    <select formControlName="resturant" data-placeholder="Select a resturant" class="select2" style="width: 100%;">
       <option [ngValue]="resturant"  *ngFor="let resturant of resturantList;let i=index">{{resturant.name}}</option>
   
     </select>

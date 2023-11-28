@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './modules/home/home/home.component';
 import { UserProfileComponent } from './modules/user-profile/user-profile.component';
+import { CartPageComponent } from './modules/cart-page/cart-page.component';
 
 
 const routes: Routes = [
@@ -22,10 +23,10 @@ const routes: Routes = [
     path: 'user-profile',
     component: UserProfileComponent
   },
-  // {
-  //   path: 'home/:searchTerm',
-  //   component: HomeComponent
-  // },
+  {
+    path: 'cart-page',
+    component: CartPageComponent
+  },
 ];
 
 @NgModule({

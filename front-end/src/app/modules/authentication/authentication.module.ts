@@ -28,7 +28,7 @@ import { CartPageComponent } from '../cart-page/cart-page.component';
     TextInputComponent,
     InputContainerComponent,
     InputValidationComponent,
-    CartPageComponent,
+    CartPageComponent
   ],
   imports: [
     CommonModule,

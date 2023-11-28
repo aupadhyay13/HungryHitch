@@ -1,140 +1,125 @@
-/* Container styling for a flexible, wrapped layout with aligned items */
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start; /* Aligns items to the start of the container */
-  margin: 1.5rem;
-  margin-top: 0.5rem;
-}
-
-/* Styling for the unordered list to maintain a consistent design */
-ul {
-  display: flex;
-  flex-direction: column; /* Organizes list items in a column */
-  flex: 3 0; /* Flex-grow, flex-shrink, and flex-basis values for flexible layout */
-  justify-content: space-evenly; /* Even spacing between items */
-  border: 1px solid #ffbbbb;
-  border-radius: 1rem;
-  list-style: none;
-  margin: 0.5rem;
-  padding: 0;
-}
-
-/* Styling for each list item */
-ul li {
-  display: flex;
-  justify-content: space-around; /* Evenly spaces child elements */
-  align-items: center;
-  flex-wrap: wrap;
-  border-bottom: 1px solid #e4e4e4; /* Bottom border for separation */
-}
-
-/* Removes border for the last list item */
-ul li:last-child {
-  border: none;
-}
-
-/* Styling for images in list items */
-li img {
-  width: 5rem;
-  height: 5rem;
-  border-radius: 100rem; /* Circular images */
-  object-fit: cover;
-}
-
-/* Padding for div elements in list items */
-li div {
-  padding: 1rem;
-}
-
-/* Adjusting flex basis for divs except the first one */
-li div:not(:first-child) {
-  flex-basis: 18%;
-}
-
-/* Styling for select elements in list items */
-li select {
-  width: 3rem;
-  outline: none;
-  border: none;
-  border-bottom: 1px solid lightgrey;
-  font-size: 1.1rem;
-  font-weight: 100;
-}
-
-/* Styling for remove buttons */
-li .remove-button {
-  border-radius: 1rem;
-  border: none;
-  padding: 0.5rem;
-  color: #e72929;
-  opacity: 0.7;
-  outline: none;
-}
-
-/* Hover effect for remove buttons */
-li .remove-button:hover {
-  opacity: 1;
-  cursor: pointer;
-}
-
-/* Checkout section styling */
-.checkout {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  flex: 1 3; /* Flexibility in growing and shrinking */
-  height: 20rem;
-  border: 1px solid #ffbbbb;
-  border-radius: 1rem;
-  padding: 0.5rem;
-  margin: 0.5rem;
-}
-
-/* Styling for divs inside the checkout section */
-.checkout > div {
-  font-size: 1.4rem;
-  margin: 1rem;
-  flex: 3;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-/* Styling for the foods count section */
-.foods-count {
-  margin-bottom: 1.5rem;
-}
-
-/* Adding content before the foods count */
-.foods-count::before {
-  content: "Count: ";
-  color: grey;
-}
-
-/* Adding content before the total price */
-.total-price::before {
-  content: 'Price: ';
-  color: grey;
-}
-
-/* Styling for links in the checkout section */
-.checkout a {
-  padding: 1rem;
-  color: white;
-  background: #e72929;
-  display: block;
-  width: 99%;
-  border-radius: 1rem;
-  text-align: center;
-  opacity: 0.7;
-  justify-self: center;
-}
-
-/* Hover effect for links in the checkout section */
-.checkout a:hover {
-  opacity: 1;
-  cursor: pointer;
-}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin: 1.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  ul{
+    display: flex;
+    flex-direction: column;
+    flex:3 0;
+    justify-content: space-evenly;
+    border: 1px solid #4CAF50;
+    border-radius: 1rem;
+    list-style: none;
+    margin: 0.5rem;
+    padding: 0;
+  }
+  
+  ul li{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #e4e4e4;
+  }
+  
+  ul li:last-child{
+    border: none;
+  }
+  
+  li img{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 100rem;
+    object-fit: cover;
+  }
+  
+  li div{
+    padding: 1rem;
+  }
+  
+  li div:not(:first-child){
+    flex-basis: 18%;
+  }
+  
+  li select{
+    width: 3rem;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid lightgrey;
+    font-size: 1.1rem;
+    font-weight: 100;
+  }
+  
+  li .remove-button{
+    border-radius: 1rem;
+    border: none;
+    padding: 0.5rem;
+    color: white;
+    opacity: 0.7;
+    outline: none;
+    background-color: #4CAF50;
+  }
+  
+  li .remove-button:hover{
+    opacity: 1;
+    cursor: pointer;
+  }
+  
+  .checkout{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex:1 3;
+    height: 20rem;
+    font-weight: 600;
+    border: 1px solid #ffbbbb;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    margin: 0.5rem;
+  }
+  
+  .checkout>div{
+    font-size: 1.4rem;
+    margin: 1rem;
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  .foods-count{
+    margin-bottom: 1.5rem;
+  }
+  
+  .foods-count::before{
+    content:"Total Items: ";
+    color: grey;
+  }
+  
+  .total-price::before{
+    content: 'Price: ';
+    color: grey;
+  }
+  
+  .checkout a{
+    padding: 1rem;
+    color: white;
+    background: #4CAF50;
+    display: block;
+    width: 99%;
+    border-radius: 1rem;
+    text-align: center;
+    opacity: 0.7;
+    justify-self: center;
+  }
+  
+  .checkout a:hover{
+    opacity: 1;
+    cursor: pointer;
+  }

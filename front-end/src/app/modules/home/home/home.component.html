@@ -6,7 +6,7 @@ resetLinkText="Reset Search">
 </app-not-found> -->
 <ul>
   <li *ngFor="let food of foods">
-    <a routerLink="/home/detail/{{food.id}}">
+    <a style="cursor: pointer;" (click)="navigate(food._id)">
       <img [src]="food.image" [alt]="food.name" />
       <div class="content">
         <div class="name">
@@ -16,15 +16,15 @@ resetLinkText="Reset Search">
           ❤
         </span>
         <br>
-        <!-- <div class="stars">
-          <star-rating [stars]="food.stars" />
-        </div> -->
+        <div class="stars">
+          <!-- <star-rating [stars]="food.stars" /> -->
+        </div>
         <div class="product-item-footer">
-          <!-- <div class="origins">
-            <span *ngFor="let origin of food.origins">
-              {{origin}}
+          <div class="origins">
+            <span *ngFor="let category of food.categories">
+              {{category}}
             </span>
-          </div> -->
+          </div>
 
           <div class="cook-time">
             <span>🕒</span>
@@ -37,6 +37,13 @@ resetLinkText="Reset Search">
             {{food.price | currency}}
           </span>
         </div>
+        <!-- <div class="">
+          
+
+          <span style="font-weight: 600;">
+            {{food.resturantData.length > 0 ? food.resturantData[0].name : ''}}
+          </span>
+        </div> -->
       </div>
     </a>
   </li>

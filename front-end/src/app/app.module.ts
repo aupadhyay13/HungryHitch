@@ -18,12 +18,13 @@ import { InputContainerComponent } from './components/input-container/input-cont
 import { InputValidationComponent } from './components/input-validation/input-validation.component';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { SearchComponent } from './components/search/search.component';
+import { CartPageComponent } from './modules/cart-page/cart-page.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

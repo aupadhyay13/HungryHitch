@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+const { ObjectId } = require("mongodb");
 import { Cloudinary } from "../../../helpers/cloudinary";
 import { Utils } from "../../../helpers/utils";
 import { Category, CategoryModel } from "../../../models/category.model";
@@ -55,12 +57,14 @@ export class AdminUtil{
             }
           
            
-            const {name,cookTime,price} = foodObj.body;
+            const {name,cookTime,price,resturant,categories} = foodObj.body;
 
             const foodItem: Food = {
                 name,
                 cookTime,
                 price: +price,
+                resturant: new ObjectId(resturant),
+                categories: categories.split(","),
                 image : imgResult ? imgResult.url : '',
                 isDisabled: false
               }

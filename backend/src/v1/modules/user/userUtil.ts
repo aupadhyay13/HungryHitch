@@ -48,7 +48,22 @@ export class UserUtil{
     public async getFoodItems(){
         try{
           
-              const data = await FoodModel.find({isDisabled : false});
+            //   const data = await FoodModel.find({isDisabled : false});
+            const data = await FoodModel.aggregate([
+                {
+                    $match: {
+                        isDisabled: false
+                    }
+                },
+                {
+                    $lookup: {
+                        from : 'resturants',
+                        localField: 'resturant',
+                        foreignField: '_id',
+                        as: 'resturantData'
+                    }
+                }
+            ])
               return data;
         }catch(err){
             console.log("Error in creating food item isss--->",err);
