@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
@@ -10,7 +10,7 @@ declare var $: any;
   templateUrl: './add-food.component.html',
   styleUrls: ['./add-food.component.scss']
 })
-export class AddFoodComponent {
+export class AddFoodComponent implements OnInit, DoCheck{
   foodAddForm: any;
   selectedCategories: any = [];
   fileToUpload: any | null = null;
@@ -26,23 +26,24 @@ export class AddFoodComponent {
 
   }
   ngAfterViewInit() {
-    $('.fields-select').on('change',
-    (e: any) => 
-      //  console.log("aaauuiiii",e.target.value)
-      console.log("DSDFsf",document.querySelector("categories")?.nodeValue)
- );
+    
 }
 
   ngOnInit(): void {
-    this.authService.enableAllTheme.next(true);
+
+    
+   
     this.foodAddForm = this.formBuilder.group({
       name: new FormControl('', [Validators.required]),
       price: new FormControl('', [Validators.required, Validators.min(2)]),
       cookTime: new FormControl('', [Validators.required]),
-      resturant: new FormControl(''),
-      categories: new FormControl(''),
+      resturant: new FormControl('',[Validators.required]),
+      categories: new FormControl([]),
       image: new FormControl('', [Validators.required]),
     });
+
+    this.authService.enableAllTheme.next(true);
+
     this.adminService.getResturantList().subscribe((res: any) => {
       if(res.status == 'success'){
         this.resturantList = res.data.filter((item: any) => item.isDisabled == false).map((item: any) => item);
@@ -59,11 +60,24 @@ export class AddFoodComponent {
 
   }
 
+
+  ngDoCheck(){
+   console.log(this.foodAddForm.value)
+
+  }
+
   changeDropdown(){
     console.log("aaayuu");
   }
 
   addFood() {
+       console.log("Category",document.querySelectorAll(".select2-selection__choice"))
+       const val: any = document.querySelectorAll(".select2-selection__choice");
+       let selectedCategories = [];
+       for(let i of val){
+        console.log(i['title']);
+        selectedCategories.push(i['title']);
+       }
    console.log("foodAddForm is------------->",this.foodAddForm.value);
    console.log("selected categ is------------->",this.selectedCategories);
     const formData = new FormData();
@@ -72,8 +86,8 @@ export class AddFoodComponent {
     formData.append('cookTime', this.foodAddForm.value.cookTime);
     formData.append('foodImage', this.fileToUpload);
     console.log("foodData data is--->",formData);
-    formData.append('resturant', "655e5405d650d7359d87d490");
-    formData.append('categories', "Italian Cuisine,snack");
+    formData.append('resturant', this.foodAddForm.value.resturant);
+    formData.append('categories', selectedCategories.join(','));
     this.adminService.addFoodItem(formData).subscribe((res: any) => {
         console.log("res is--------->",res);
        if(res.status == "fail"){
