@@ -1,0 +1,69 @@
+/* Base styles for all screen sizes */
+.container1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 3rem;
+}
+
+.details1{
+    width: 28rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.error-list {
+    color: red;
+}
+
+button {
+    height: 3.5rem;
+    border: none;
+    outline: none;
+    font-weight: 100;
+    border-radius: 0.8rem;
+    width: 100%;
+    margin: 1rem auto;
+    transition: background-color 0.1s;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.edit-button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+.discard-button {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+
+/* Tablet (landscape) and larger screens */
+@media (min-width: 768px) {
+    .container {
+        margin-top: 0;
+    }
+
+    .details {
+        width: 50%;
+    }
+}
+
+/* Mobile (portrait) screens */
+@media (max-width: 767px) {
+    .container {
+        margin-top: 0;
+    }
+
+    .details {
+        width: 80%;
+    }
+}

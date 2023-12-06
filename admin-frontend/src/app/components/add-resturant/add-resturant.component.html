@@ -1,0 +1,70 @@
+
+<div class="row">
+    
+    <div class="col-md-10" style="margin-top:5%">
+    
+    <div class="card card-secondary">
+    <div class="card-header">
+    <h3 class="card-title">Add Resturant</h3>
+    </div>
+    
+    
+    <form [formGroup]="resturantAddForm" >
+    <div class="card-body">
+    <div class="form-group">
+    <label for="exampleInputName">Resturant Name</label>
+    <input formControlName="name" type="text" class="form-control" id="exampleInputName" placeholder="Enter Resturant Name">
+    <div *ngIf="resturantAddForm.controls.name.invalid && (resturantAddForm.controls.name.dirty || resturantAddForm.controls.name.touched)"
+    class="alert alert-danger mt-1">
+
+    <div *ngIf="resturantAddForm.controls.name.errors?.['required']">
+        Resturant Name is required.
+    </div>
+    </div>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputDescription">Description</label>
+        <textarea formControlName="description" type="text" class="form-control" id="exampleInputDescription" placeholder="Enter Description">
+       </textarea>
+            <div *ngIf="resturantAddForm.controls.description.invalid && (resturantAddForm.controls.description.dirty || resturantAddForm.controls.description.touched)"
+        class="alert alert-danger mt-1">
+    
+        <div *ngIf="resturantAddForm.controls.description.errors?.['required']">
+            Description is required.
+        </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputAddress">Address</label>
+        <input formControlName="address" type="text" class="form-control" id="exampleInputAddress" placeholder="Enter Address">
+        <div *ngIf="resturantAddForm.controls.address.invalid && (resturantAddForm.controls.address.dirty || resturantAddForm.controls.address.touched)"
+        class="alert alert-danger mt-1">
+    
+        <div *ngIf="resturantAddForm.controls.address.errors?.['required']">
+            Address is required.
+        </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="image">Resturant Logo</label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="image" formControlName="image" (change)="handleFileInput($event)">
+          <label class="custom-file-label" for="image">{{fileToUpload ? fileToUpload.name : "Choose File"}}</label>
+        </div>
+        <div *ngIf="resturantAddForm.controls.image.invalid && (resturantAddForm.controls.image.dirty || resturantAddForm.controls.image.touched)"
+             class="alert alert-danger mt-1">
+          <div *ngIf="resturantAddForm.controls.image.errors?.['required']">
+            Image is required.
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card-footer">
+    <button [disabled]="resturantAddForm.invalid" (click)="addFood()"  type="submit" class="btn btn-secondary">Submit</button>
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>
+    

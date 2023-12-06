@@ -1,0 +1,62 @@
+
+    <div class="row">
+    
+    <div class="col-md-10" style="margin-top:5%">
+    
+    <div class="card card-secondary">
+    <div class="card-header">
+    <h3 class="card-title">Add Admin</h3>
+    </div>
+    
+    
+    <form [formGroup]="adminAddForm" >
+    <div class="card-body">
+    <div class="form-group">
+    <label for="email">Email address</label>
+    <input type="email" class="form-control" id="email" formControlName="email" required placeholder="Enter email">
+ 
+    <div *ngIf="adminAddForm.controls.email.invalid && (adminAddForm.controls.email.dirty || adminAddForm.controls.email.touched)"
+    class="alert alert-danger mt-1">
+
+    <div *ngIf="adminAddForm.controls.email.errors?.['required']">
+        Email address is required.
+    </div>
+    <div *ngIf="adminAddForm.controls.email.errors?.['email']">
+       Email address must be valid.
+      </div>
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" formControlName="password" required placeholder="Password">
+    <div *ngIf="adminAddForm.controls.password.invalid && (adminAddForm.controls.password.dirty || adminAddForm.controls.password.touched)"
+    class="alert alert-danger mt-1">
+
+    <div *ngIf="adminAddForm.controls.password.errors?.['required']">
+        Password is required.
+    </div>
+    <div *ngIf="adminAddForm.controls.password.errors?.['minlength']">
+       Password must be at least 4 characters long.
+      </div>
+    </div>
+    </div>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" formControlName="name" required placeholder="Name">
+        <div *ngIf="adminAddForm.controls.name.invalid && (adminAddForm.controls.name.dirty || adminAddForm.controls.name.touched)"
+        class="alert alert-danger mt-1">
+    
+        <div *ngIf="adminAddForm.controls.name.errors?.['required']">
+            Name is required.
+        </div>
+        </div>
+    </div>    
+    </div>
+    
+    <div class="card-footer">
+    <button [disabled]="adminAddForm.invalid" (click)="addAdmin()" type="submit" class="btn btn-secondary">Submit</button>
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>

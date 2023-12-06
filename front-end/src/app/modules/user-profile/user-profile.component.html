@@ -1,0 +1,23 @@
+<div class="container1">
+    <div class="details1">
+        <app-title title="User Profile"></app-title>
+
+        <form [formGroup]="UserProfileForm">
+            <app-text-input [control]="fc['name']" [showErrorsWhen]="isSubmitted" type="text" label="Name">
+            </app-text-input>
+
+            <app-text-input [control]="fc['email']" [showErrorsWhen]="isSubmitted" type="email" label="Email">
+            </app-text-input>
+
+            <app-text-input [control]="fc['address']" [showErrorsWhen]="isSubmitted" type="text" label="Address">
+            </app-text-input>
+
+            <!-- Additional input fields for user profile -->
+            
+            <div class="button-container">
+                <button class="edit-button" (click)="onEditClick()">{{ isEditMode ? 'Save' : 'Edit' }}</button>
+                <button *ngIf="isEditMode" class="discard-button" (click)="onDiscardClick()">Discard</button>
+            </div>
+        </form>
+    </div>
+</div>

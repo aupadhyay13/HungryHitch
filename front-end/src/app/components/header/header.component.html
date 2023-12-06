@@ -1,0 +1,31 @@
+<!-- <app-search></app-search> -->
+<header>
+    <div class="container">
+      <a routerLink="/home" class="logo" (click)="navigateHome()">
+        <img src="assets\Hungry Hitch-02.png" alt="Hungry Hitch Logo">
+      </a>
+      <nav>
+        <ul>
+          <li *ngIf="!isLoggedIn">
+            <div class="login-container">
+              <a routerLink="/authentication">Login</a>
+            </div>
+          </li>
+          <li *ngIf="isLoggedIn" class="menu-container">
+            <a routerLink="/home">{{userData.name}}</a>
+            <div class="menu">
+              <a routerLink="user-profile">Profile</a>
+              <a routerLink="/orders">Orders</a>
+              <a href="#" role="button" (click)="logout()">Logout</a>
+            </div>
+          </li>
+          <!-- <li>
+            <a routerLink="/cart-page">
+              Cart <span>5</span>
+            </a>
+          </li> -->
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
