@@ -1,6 +1,7 @@
 import express from 'express';
 import { dbConnect } from './configs/database.config';
 import cors from "cors";
+import path from 'path';
 import bodyParser from "body-parser";
 import { UserRoute } from './v1/modules/user/userRoute';
 import { Routes } from './routes';
@@ -16,6 +17,11 @@ app.use(cors({
     credentials:true,
     origin:["http://localhost:4200","http://localhost:4300"]
 }));
+app.use(express.static('public'));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname,'public', 'index.html'))
+})
+
 app.use("/api/v1", routes.path());
 app.get('/', (req, res) => {
   res.send('Hello World!');
