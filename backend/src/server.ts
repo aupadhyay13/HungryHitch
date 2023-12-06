@@ -17,15 +17,13 @@ app.use(cors({
     credentials:true,
     origin:["http://localhost:4200","http://localhost:4300"]
 }));
+
+app.use("/api/v1", routes.path());
+
 app.use(express.static('public'));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname,'public', 'index.html'))
 })
-
-app.use("/api/v1", routes.path());
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
 
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`);
