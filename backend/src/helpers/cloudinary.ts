@@ -4,9 +4,9 @@ export class Cloudinary{
 
     public async uploadImage(req){
         cloudinary.config({ 
-            cloud_name: 'd******x', 
-            api_key: '1*******5', 
-            api_secret: 'd************' 
+            cloud_name: process.env.CLOUD_NAME, 
+            api_key: process.env.API_KEY, 
+            api_secret: process.env.API_SECRET 
           });
           let streamUpload = async (req) => {
             return new Promise((resolve, reject) => {

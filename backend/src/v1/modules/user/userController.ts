@@ -6,7 +6,7 @@ import { UserUtil } from "./userUtil";
 import { Request, Response } from "express";
 export class UserController{
     private userUtil: UserUtil = new UserUtil();
-
+    
     public signUp =  async (req: Request, res : Response) => {
         try{
             const {email} = req.body;
@@ -72,7 +72,7 @@ export class UserController{
 
     public getProducts =  async (req: Request, res : Response) => {
         try{
-           
+     
             const result = await this.userUtil.getFoodItems();
             res.status(200).send({
                 status: Constants.SUCCEESS,
