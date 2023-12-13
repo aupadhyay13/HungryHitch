@@ -14,6 +14,10 @@ import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { CartPageComponent } from '../cart-page/cart-page.component';
 import { CheckoutPageComponent } from '../checkout-page/checkout-page.component';
 import { OrderItemsListComponent } from 'src/app/components/order-items-list/order-items-list.component';
+import { MapComponent } from 'src/app/components/map/map.component';
+import { PaymentComponent } from '../payment/payment.component';
+import { PaypalButtonComponent } from 'src/app/components/paypal-button/paypal-button.component';
+import { OrderTrackComponent } from '../order-track/order-track.component';
 
 
 @NgModule({
@@ -28,7 +32,11 @@ import { OrderItemsListComponent } from 'src/app/components/order-items-list/ord
     InputValidationComponent,
     CartPageComponent,
     CheckoutPageComponent,
-    OrderItemsListComponent
+    OrderItemsListComponent,
+    MapComponent,
+    PaymentComponent,
+    PaypalButtonComponent,
+    OrderTrackComponent
   ],
   imports: [
     CommonModule,

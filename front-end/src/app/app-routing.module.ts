@@ -4,6 +4,8 @@ import { HomeComponent } from './modules/home/home/home.component';
 import { UserProfileComponent } from './modules/user-profile/user-profile.component';
 import { CartPageComponent } from './modules/cart-page/cart-page.component';
 import { CheckoutPageComponent } from './modules/checkout-page/checkout-page.component';
+import { PaymentComponent } from './modules/payment/payment.component';
+import { OrderTrackComponent } from './modules/order-track/order-track.component';
 
 
 const routes: Routes = [
@@ -31,6 +33,14 @@ const routes: Routes = [
   {
     path: 'checkout-page',
     component: CheckoutPageComponent
+  },
+  {
+    path: 'payment',
+    component: PaymentComponent
+  },
+  {
+    path: 'track/:orderId',
+    component: OrderTrackComponent
   },
 ];
 

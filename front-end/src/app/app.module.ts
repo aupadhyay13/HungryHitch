@@ -11,12 +11,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { DetailModule } from './modules/detail/detail.module';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
-import { OrderItemsListComponent } from './components/order-items-list/order-items-list.component';
+import { OrderTrackComponent } from './modules/order-track/order-track.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

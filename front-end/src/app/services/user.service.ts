@@ -61,6 +61,7 @@ export class UserService{
 
       public removeFromLocalStorage(){
         localStorage.removeItem('User');
+        localStorage.removeItem('Cart');
         this.userSubject.next(new User());
       }
 
