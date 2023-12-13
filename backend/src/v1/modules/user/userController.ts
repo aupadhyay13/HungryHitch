@@ -1,6 +1,8 @@
 import { Constants } from "../../../configs/constants";
+import { orderStratus } from "../../../configs/order_status";
 import { Cloudinary } from "../../../helpers/cloudinary";
 import { Utils } from "../../../helpers/utils";
+import { OrderModel } from "../../../models/order.model";
 import { UserModel } from "../../../models/user.model";
 import { UserUtil } from "./userUtil";
 import { Request, Response } from "express";
@@ -155,6 +157,90 @@ export class UserController{
         
     }
 
+
+    public createOrder =  async (req: Request, res : Response) => {
+        try{
+            const requestOrder = req.body;
+
+             if(requestOrder.items.length <= 0){
+                    res.status(400).send('Cart Is Empty!');
+                    return;
+             }
+
+            await OrderModel.deleteOne({
+                user: requestOrder.userId,
+                status: orderStratus.NEW
+            });
+
+            const newOrder = new OrderModel({...requestOrder,user: requestOrder.userId});
+            await newOrder.save();
+            res.send(newOrder);
+
+        }catch(error){
+            console.log("Error in creating order---->",error);
+            res.status(400).send({
+                status : Constants.FAIL,
+                message: "There is an error while creating order.Please try again later."
+            })
+        }
+        
+    }
+
+    public getNewOrderForUser =  async (req: Request, res : Response) => {
+        try{
+            const { _id } =  req['authUser']
+            const order= await this.userUtil.getNewOrderForCurrentUser(_id);
+            if(order) res.send(order);
+            else res.status(400).send();
+        }catch(error){
+            console.log("Error in getting new order for current user---->",error);
+            res.status(400).send({
+                status : Constants.FAIL,
+                message: "There is an error while fetching new order for current user.Please try again later."
+            })
+        }
+        
+    }
+
+    public pay =  async (req: Request, res : Response) => {
+        try{
+            const {paymentId, userId} = req.body;
+            const order = await this.userUtil.getNewOrderForCurrentUser(userId);
+            if(!order){
+                res.status(400).send('Order Not Found!');
+                return;
+            }
+        
+            order.paymentId = paymentId;
+            order.status = orderStratus.PAID;
+            await order.save();
+        
+            res.send(order._id);
+
+        }catch(error){
+            console.log("Error in paying order---->",error);
+            res.status(400).send({
+                status : Constants.FAIL,
+                message: "There is an error while paying order.Please try again later."
+            })
+        }
+        
+    }
+
+
+    public orderTrack =  async (req: Request, res : Response) => {
+        try{
+            const order = await OrderModel.findById(req.params.id);
+            res.send(order);
+        }catch(error){
+            console.log("Error in tracking order for user---->",error);
+            res.status(400).send({
+                status : Constants.FAIL,
+                message: "There is an error while tracking order for user.Please try again later."
+            })
+        }
+        
+    }
 
 
 }

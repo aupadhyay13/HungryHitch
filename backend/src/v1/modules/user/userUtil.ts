@@ -2,6 +2,8 @@ import bcrypt from 'bcryptjs';
 import { User, UserModel } from '../../../models/user.model';
 import { Utils } from '../../../helpers/utils';
 import { FoodModel } from '../../../models/food.model';
+import { OrderModel } from '../../../models/order.model';
+import { orderStratus } from '../../../configs/order_status';
 export class UserUtil{
     private utils: Utils = new Utils();
     public async signUpUser(userObj){
@@ -112,4 +114,16 @@ export class UserUtil{
             throw err;
         }
     }
+
+
+    public async getNewOrderForCurrentUser(userId: any){
+        try{
+          
+            return await OrderModel.findOne({ user: userId, status: orderStratus.NEW });
+        }catch(err){
+            console.log("Error in creating food item isss--->",err);
+            throw err;
+        }
+    }
+
 }

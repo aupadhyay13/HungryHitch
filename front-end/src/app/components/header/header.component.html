@@ -19,11 +19,11 @@
               <a href="#" role="button" (click)="logout()">Logout</a>
             </div>
           </li>
-          <!-- <li>
+          <li *ngIf="isLoggedIn">
             <a routerLink="/cart-page">
-              Cart <span>5</span>
+              Cart <span span *ngIf="cartQuantity">{{cartQuantity}}</span>
             </a>
-          </li> -->
+          </li>
         </ul>
       </nav>
     </div>

@@ -10,5 +10,8 @@ router.get("/get-food-list",userController.getProducts);
 router.get("/get-food-item",userController.getProduct);
 router.get("/get-profile",middlware.getAuthorizedUser,userController.getUserProfile);
 router.post("/update-profile",userController.updateProfile);
-
+router.post("/create-order",userController.createOrder);
+router.get("/new-order-for-current-user",middlware.getAuthorizedUser,userController.getNewOrderForUser);
+router.post("/pay",userController.pay);
+router.get("/order-track/:id",userController.orderTrack);
 export const UserRoute: Router = router;

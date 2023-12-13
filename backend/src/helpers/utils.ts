@@ -14,6 +14,7 @@ export class Utils{
           email: user.email,
           name: user.name,
           address: user.address,
+          id: user._id,
           isDisabled: user.isDisabled,
           token: token
         };
