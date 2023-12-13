@@ -5,26 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RegisterComponent } from './modules/authentication/register/register.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-import { DetailComponent } from './modules/detail/detail.component';
 import { DetailModule } from './modules/detail/detail.module';
-import { UserProfileComponent } from './modules/user-profile/user-profile.component';
-import { TextInputComponent } from './components/text-input/text-input.component';
-import { InputContainerComponent } from './components/input-container/input-container.component';
-import { InputValidationComponent } from './components/input-validation/input-validation.component';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
-import { SearchComponent } from './components/search/search.component';
-import { CartPageComponent } from './modules/cart-page/cart-page.component';
-
+import { OrderItemsListComponent } from './components/order-items-list/order-items-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,11 @@ export class UserService{
       ) {
         this.userObservable = this.userSubject.asObservable();
       }
-    
+      
+      public get currentUser():User{
+        return this.userSubject.value;
+      }
+      
       login(userLogin:any){
         return this.httpRequestService.postRequest('user/login', userLogin);
       }
