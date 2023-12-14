@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+declare var $: any;
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -13,7 +13,7 @@ export class SidebarComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    
+    $('[data-widget="treeview"]').Treeview('init');
   }
 
 

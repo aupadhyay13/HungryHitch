@@ -10,6 +10,7 @@ import { FoodListComponent } from './components/food-list/food-list.component';
 import { AddResturantComponent } from './components/add-resturant/add-resturant.component';
 import { ResturantListComponent } from './components/resturant-list/resturant-list.component';
 import { AddCategoryComponent } from './components/add-category/add-category.component';
+import { OrderListComponent } from './components/order-list/order-list.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
   {
     path: 'add-category',
     component: AddCategoryComponent
+  },
+  {
+    path: 'order-list',
+    component: OrderListComponent
   }
 ];
 

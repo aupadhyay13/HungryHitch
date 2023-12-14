@@ -7,6 +7,7 @@ import { Food, FoodModel } from "../../../models/food.model";
 import { Resturant, ResturantModel } from "../../../models/resturant.model";
 import { User, UserModel } from "../../../models/user.model";
 import bcrypt from 'bcryptjs';
+import { OrderModel } from "../../../models/order.model";
 export class AdminUtil{
     private utils: Utils = new Utils();
     private cloudinary : any = new Cloudinary();
@@ -211,6 +212,17 @@ export class AdminUtil{
               return data;
         }catch(err){
             console.log("Error in getting admin list isss--->",err);
+            throw err;
+        }
+    }
+
+    public async getOrderList(){
+        try{
+          
+              const data = await OrderModel.find({}).sort({"createdAt" : -1});
+              return data;
+        }catch(err){
+            console.log("Error in getting food item list isss--->",err);
             throw err;
         }
     }

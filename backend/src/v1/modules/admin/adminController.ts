@@ -234,6 +234,23 @@ export class AdminController{
         
     }
 
+    public getOrderList =  async (req: Request, res : Response) => {
+        try{
+           
+            const result = await this.adminUtil.getOrderList();
+            res.status(200).send({
+                status: Constants.SUCCEESS,
+                data: result
+            })
+        }catch(error){
+            console.log("Error in getting user---->",error);
+            res.status(400).send({
+                status : Constants.FAIL,
+                message: "There is an error while fetching order list.Please try again later."
+            })
+        }
+        
+    }
 
     public changeFoodStatus =  async (req: Request, res : Response) => {
         try{

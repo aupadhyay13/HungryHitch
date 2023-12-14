@@ -53,7 +53,7 @@
     </ul>
     </li> -->
     <li class="nav-item menu-open">
-        <a href="pages/widgets.html" class="nav-link">
+        <a style="cursor: pointer;" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>Dashboard</p>
         </a>
@@ -80,7 +80,7 @@
             </ul>
     </li>
     <li class="nav-item menu-close">
-        <a href="pages/widgets.html" class="nav-link">
+        <a style="cursor: pointer;" class="nav-link">
             <i class="nav-icon fas fa-user"></i>
             <p>User Management</p>
             <i class="right fas fa-angle-left"></i>
@@ -96,7 +96,7 @@
         </ul>
     </li>
     <li class="nav-item menu-close">
-        <a href="pages/widgets.html" class="nav-link">
+        <a  style="cursor: pointer;" class="nav-link">
             <i class="nav-icon fas fa-hamburger"></i>
             <p>
                 Restaurant Manag.
@@ -121,7 +121,7 @@
         </ul>
     </li>
     <li class="nav-item menu-close">
-        <a href="pages/widgets.html" class="nav-link">
+        <a style="cursor: pointer;" class="nav-link">
             <i class="nav-icon fas fa-hamburger"></i>
             <p>
                 Food Management
@@ -152,7 +152,7 @@
         </ul>
     </li>
     <li class="nav-item menu-close">
-        <a href="pages/widgets.html" class="nav-link">
+        <a style="cursor: pointer;" class="nav-link">
             <i class="nav-icon fas fa-shopping-cart"></i>
             <p>
                 Order Management
@@ -162,7 +162,7 @@
         </a>
         <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="./index.html" class="nav-link">
+                <a role="button" class="nav-link" (click)="navigateToPage('order-list')">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Order List</p>
                 </a>
